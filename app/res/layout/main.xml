@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingTop="10dip" >
+
+        <TextView
+            android:id="@+id/TextView02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/MsgOverView"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingTop="10dip" >
+
+        <Button
+            android:id="@+id/buttonRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/WordRegisterDevice" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout04"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingTop="20dip" >
+
+        <Button
+            android:id="@+id/buttonUnregister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/WordUnregisterDevice" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout05"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingTop="20dip" >
+
+        <Button
+            android:id="@+id/buttonSendMail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/WordResendMail" />
+    </LinearLayout>    
+    
+    <LinearLayout
+        android:id="@+id/linearLayout06"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingTop="20dip" >
+
+        <Button
+            android:id="@+id/buttonNoSleep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/WordEnterNoSleep" />
+    </LinearLayout>
+
+</LinearLayout>
