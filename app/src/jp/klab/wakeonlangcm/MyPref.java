@@ -32,6 +32,7 @@ import android.os.Environment;
 
 public class MyPref {
     private static final String TAG = "WOL";
+    private static final String PREFKEY_APP = "App";
     private static final String PREFKEY_ENTRY = "Entry";
     private SharedPreferences mPref = null;
     private Context mCtx;
@@ -42,6 +43,7 @@ public class MyPref {
     }
     private void init() {
         mPref = mCtx.getSharedPreferences(mCtx.getString(R.string.pref_name), Activity.MODE_PRIVATE);
+        mPref.edit().putString(PREFKEY_APP, mCtx.getString(R.string.pref_name)).commit(); // dummy
     }
     
     // Check if the entry name is in use or not 
