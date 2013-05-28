@@ -1,5 +1,5 @@
 WakeOnLanGCM is an Android application to send the Wake-on-Lan Magic Packet.
-You can use this app remotely via web browser through the GCM (Google Cloud Messaging).
+You can use this app remotely via web browser through the GCM (Google Cloud Messaging for Android).
 
 https://play.google.com/store/apps/details?id=jp.klab.wakeonlangcm
 http://dsas.blog.klab.org/archives/52112793.html (in Japanese)
