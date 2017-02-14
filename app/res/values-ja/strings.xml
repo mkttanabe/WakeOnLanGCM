@@ -4,7 +4,9 @@
     <string name="pref_name">pref</string>
     <string name="html_name">WakeOnLanGCM.html</string>
 	<string name="exportdata_name">WakeOnLanGCM.dat</string>
-	<string name="CopyRightString">Copyright &#169; 2013 KLab Inc.</string>
+	<string name="CopyRightString">Copyright &#169; 2013&#8211;2017 KLab Inc.</string>
+	<string name="UrlPrivacyPolicy">http://www.klab.com/jp/privacy/</string>
+	<string name="WordPrivacyPolicy">プライバシーポリシー</string>
 	<string name="ServerUrl">https://wolremote.appspot.com/push01</string>
     <string name="WordYes">はい</string>
 	<string name="WordNo">いいえ</string>
@@ -49,7 +51,7 @@
 	<string name="MsgRemoveEntry">このエントリを削除しますか？</string>
 	<string name="MsgSendPacket">マジックパケットを送信しますか？</string>
 	<string name="MsgMaxEntry">エントリ数が最大値に達しています</string>
-	<string name="MsgNewEntry">タップしてエントリを登録</string>
+	<string name="MsgNewEntry">長押しでプライバシーポリシー表示</string>
 	<string name="MsgHint1">（半角英数字で記述）</string>
 	<string name="MsgSpecifyValidName">エントリ名は一文字以上の半角英数字で記述して下さい</string>
 	<string name="MsgNameInUse">すでに使用されている名前です</string>
