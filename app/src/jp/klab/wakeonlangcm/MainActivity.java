@@ -26,6 +26,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.LayoutInflater;
@@ -114,7 +115,10 @@ public class MainActivity extends ListActivity implements AdapterView.OnItemLong
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, final int pos, long id) {
         _Log.d(TAG, "MainActivity: onItemLongClick: pos=" + pos);
-        if (pos == 0) { // first line is used for creating a new entry 
+        if (pos == 0) { // first line is used for creating a new entry
+            Uri uri = Uri.parse(getString(R.string.UrlPrivacyPolicy));
+            Intent it = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(it);
             return true;
         }
         final View curView = view;
