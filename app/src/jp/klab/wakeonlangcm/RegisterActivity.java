@@ -118,7 +118,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
         case 0: // Open Main UI
-            Intent it = new Intent(getApplicationContext(), MainActivity.class);
+        	Intent it = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(it);
             finish();
             return true;
@@ -167,7 +167,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
             .show();
         }
         else if (v == (View)mButtonSendMail) {
-            createMail(mRegId);
+        	createMail(mRegId);
         }
         else if (v == (View)mButtonNoSleep) {
             Intent it = new Intent(getApplicationContext(), NoSleepActivity.class);
@@ -178,41 +178,41 @@ public class RegisterActivity extends Activity implements OnClickListener {
     
     private void createMail(final String regid) {
         // Open password dialog
-        final EditText editView = new EditText(this);
-        editView.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setIcon(R.drawable.icon)
-                .setTitle(R.string.MsgSpecifyPassword)
-                .setCancelable(false)
-                .setView(editView)
-                .setPositiveButton(R.string.WordNext, null)
-                .setNegativeButton(R.string.WordCancel, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
+		final EditText editView = new EditText(this);
+		editView.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setIcon(R.drawable.icon)
+				.setTitle(R.string.MsgSpecifyPassword)
+				.setCancelable(false)
+				.setView(editView)
+				.setPositiveButton(R.string.WordNext, null)
+				.setNegativeButton(R.string.WordCancel, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+					}
+				});
         final AlertDialog dlg = builder.show();
         
-        // Builder#setPositiveButton() automatically close dialog box.
-        // Button#setOnClickListener() is not so.
-        Button buttonOK = dlg.getButton(DialogInterface.BUTTON_POSITIVE);
-        buttonOK.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String pass = editView.getText().toString();
-                if (pass.length() <= 0) {
-                    showDialogMessage(mCtx, getString(R.string.MsgNoPassword), false);
-                    return;
-                }
-                dlg.dismiss();
-                Toast.makeText(mCtx, R.string.MsgCreatingMail, Toast.LENGTH_SHORT).show();
-                createMailSub(regid, pass);
-            }
-        });
-    }
+		// Builder#setPositiveButton() automatically close dialog box.
+		// Button#setOnClickListener() is not so.
+		Button buttonOK = dlg.getButton(DialogInterface.BUTTON_POSITIVE);
+		buttonOK.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				String pass = editView.getText().toString();
+				if (pass.length() <= 0) {
+					showDialogMessage(mCtx, getString(R.string.MsgNoPassword), false);
+					return;
+				}
+				dlg.dismiss();
+				Toast.makeText(mCtx, R.string.MsgCreatingMail, Toast.LENGTH_SHORT).show();
+				createMailSub(regid, pass);
+			}
+		});
+	}
 
-    private boolean createMailSub(String regid, String pass) {
+	private boolean createMailSub(String regid, String pass) {
         Account[] accounts =
             AccountManager.get(this).getAccountsByType("com.google");
-        
+		
         String cryptStr = MyCrypt.Crypt(regid, pass);
         if (cryptStr == null) {
             return false;
@@ -222,11 +222,14 @@ public class RegisterActivity extends Activity implements OnClickListener {
         int num = items.size();
         String [] entry = new String[num];
         for (int i = 0; i < num; i++) {
-            entry[i] = items.get(i).getEntryName();
+        	entry[i] = items.get(i).getEntryName();
         }
         if (!HtmlForm.create(cryptStr, entry, getApplicationContext())) {
             return false;
         }
+        // 2018-06-19 "com.google.android.gm.ComposeActivityGmail" は
+        // Android 5.x 以降とは互換性がない 
+        /*
         Intent it = new Intent();
         it.setAction(Intent.ACTION_SEND);
         String[] mailto = {accounts[0].name};
@@ -236,16 +239,31 @@ public class RegisterActivity extends Activity implements OnClickListener {
         it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         it.setType("application/octed-stream");
         it.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + HtmlForm.fileName(this)));
-        // Gmail ClassName
-        it.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
-        try {
-            startActivity(it);
-        } catch (Exception e) {
-            _Log.i(TAG, "createMailSub: Gmail ClassName causes an exception:" + e.toString());
-            // Gmail 4.2.1 etc. 
-            it.setClassName("com.google.android.gm", "com.android.mail.compose.ComposeActivityGmail");
-            startActivity(it);
-        }
+		// Gmail ClassName
+		it.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
+		//it.setClassName("com.google.android.gm", "com.android.mail.compose.ComposeActivity");
+		try {
+			startActivity(it);
+		} catch (Exception e) {
+			_Log.i(TAG, "createMailSub: Gmail ClassName causes an exception:" + e.toString());
+			// Gmail 4.2.1 etc. 
+			it.setClassName("com.google.android.gm", "com.android.mail.compose.ComposeActivityGmail");
+			startActivity(it);
+		}
+		*/
+        // 上の事情により本アプリよりも先に作成した RemoteWand の createMail() と同じやり方に変更
+        // https://github.com/mkttanabe/RemoteWand/blob/master/app/RemoteWand/src/jp/klab/remotewand/MainActivity.java
+        // 添付ファイルありの ACTION_SEND を実行
+        Uri uri = Uri.parse("mailto:" + accounts[0].name); 
+        Intent it = new Intent(Intent.ACTION_SEND);
+        String[] to = {accounts[0].name};
+        it.putExtra(Intent.EXTRA_EMAIL, to);
+        it.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.WordMailSubject));
+        it.putExtra(Intent.EXTRA_TEXT, getString(R.string.MsgMailText));
+        Uri attach = Uri.parse("file://" + HtmlForm.fileName(this));
+        it.putExtra(Intent.EXTRA_STREAM, attach);
+        it.setType("message/rfc822");
+        this.startActivity(Intent.createChooser(it, null));
         return true;
     }
     

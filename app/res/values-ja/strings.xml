@@ -4,7 +4,7 @@
     <string name="pref_name">pref</string>
     <string name="html_name">WakeOnLanGCM.html</string>
 	<string name="exportdata_name">WakeOnLanGCM.dat</string>
-	<string name="CopyRightString">Copyright &#169; 2013&#8211;2017 KLab Inc.</string>
+	<string name="CopyRightString">Copyright &#169; 2013&#8211;2018 KLab Inc.</string>
 	<string name="UrlPrivacyPolicy">http://www.klab.com/jp/privacy/</string>
 	<string name="WordPrivacyPolicy">プライバシーポリシー</string>
 	<string name="ServerUrl">https://wolremote.appspot.com/push01</string>

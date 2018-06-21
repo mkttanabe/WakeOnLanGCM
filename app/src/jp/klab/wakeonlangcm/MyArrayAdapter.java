@@ -18,8 +18,6 @@ package jp.klab.wakeonlangcm;
 
 import java.util.List;
 
-import jp.klab.wakeonlangcm.R;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
